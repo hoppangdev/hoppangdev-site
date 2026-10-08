@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
 import BunLogo from './components/BunLogo'
 import BathArt from './components/BathArt'
+import WhoArt from './components/WhoArt'
 import { ArrowRight, ArrowUpRight, CloseIcon, Globe, MenuIcon, Sparkle } from './components/Icons'
 
 type Lang = 'en' | 'ko'
 
 const i18n = {
   en: {
-    navGames:'Our Game', navStudio:'The Studio', navContact:'Get in Touch', navMenu:'Open menu',
+    navGames:'Our Games', navStudio:'The Studio', navContact:'Get in Touch', navMenu:'Open menu',
     pill:'INDEPENDENT GAME STUDIO', heroTop:'SMALL STUDIO.',heroAccent:'BIG PLAY.',
-    heroDesc:'We build playful little worlds that stay with you long after you close the tab.',
-    heroAction:'Explore our game', heroSecondary:'Meet the studio', scroll:'SCROLL TO EXPLORE',
+    heroDesc:'We build playful little worlds, from a flying bathtub to a supermarket full of suspiciously ordinary faces.',
+    heroAction:'Explore our games', heroSecondary:'Meet the studio', scroll:'SCROLL TO EXPLORE',
     ticker:['MADE WITH CURIOSITY','BUILT FOR FUN','ONE GAME AT A TIME','IMAGINATION FIRST'],
     workEyebrow:'01 / WHAT WE MAKE', workTitle:'Meet the', workTitleEm:'playground.',
     workIntro:'Unexpected adventures. One very determined indie developer. And a little bit of chaos.',
@@ -20,9 +21,14 @@ const i18n = {
     feature1:'8 main stages', feature2:'12 languages', feature3:'Upgrades & challenges',
     gameNotice:'Project artwork on this page is illustrative, not an actual gameplay screenshot.',
     gameLink:'Game information & support', gamePolicy:'Privacy policy',
+    whoType:'3D OBSERVATION GAME', whoState:'LOCAL PROTOTYPE', whoLabel:'A NEW PROJECT IN THE AISLES',
+    whoDesc:'Everyone looks the same. Walk through a supermarket, watch the crowd and pick the back number of the AI trying to act human. A small gesture might be your biggest clue.',
+    whoFeature1:'Walk, watch, decide', whoFeature2:'White mannequins · back numbers', whoFeature3:'Korean & English',
+    whoLink:'Meet Who Are U!', whoNote:'In development. Public play and online multiplayer are not available yet.',
+    whoArt:'Concept illustration · not gameplay', whoFooter:'Who Are U! project', closeMenu:'Close menu', navigation:'Main navigation', changeLang:'Change language',
     studioEyebrow:'02 / WHO WE ARE', studioTitle:'Independent by choice.', studioTitleEm:'Playful by nature.',
     studioLead:'HOPPANGDEV is a one-person independent game development studio creating original games with personality.',
-    studioCopy:'From the first sketch to the final polish, every detail is crafted with a simple goal: make playing feel wonderfully surprising. We start with browser games and keep experimenting with new ideas.',
+    studioCopy:'From the first sketch to the final polish, every detail is crafted with a simple goal: make playing feel wonderfully surprising. From browser adventures to 3D worlds, we keep experimenting with new ideas.',
     studioPoint1:'Original ideas', studioPoint1d:'Games that have a character of their own.',
     studioPoint2:'Small, thoughtful details', studioPoint2d:'Every interaction should feel good.',
     studioPoint3:'Made for players', studioPoint3d:'Accessible, approachable and fun.',
@@ -31,7 +37,7 @@ const i18n = {
     contactAction:'Send us an email', contactNote:'Business, support & friendly hellos',
     footerCaption:'Independent games with a playful twist.', footerNav:'NAVIGATE', footerConnect:'CONNECT', footerRights:'All rights reserved.',
     footerDisclaimer:'Game development studio brand operated by an independent developer.',
-    policy:'Game privacy policy', support:'Game support', terms:'Game terms', langButton:'한국어',
+    policy:'Bathtub privacy policy', support:'Bathtub support', terms:'Bathtub terms', langButton:'한국어',
     marqueeEnd:'KEEP PLAYING', mailLabel:'EMAIL US',
   },
   ko: {
@@ -48,9 +54,14 @@ const i18n = {
     feature1:'메인 스테이지 8개', feature2:'12개 언어 지원', feature3:'업그레이드와 도전 과제',
     gameNotice:'페이지의 게임 일러스트는 설명을 위한 연출 이미지로, 실제 게임 화면이 아닙니다.',
     gameLink:'게임 정보·도움말 보기', gamePolicy:'개인정보 처리방침',
+    whoType:'3D 관찰·추리 게임', whoState:'로컬 프로토타입', whoLabel:'마트에서 시작하는 새 프로젝트',
+    whoDesc:'모두 같은 흰 마네킹. 마트를 걸으며 움직임과 몸짓을 살피고, 사람처럼 행동하는 AI의 등번호를 골라 보세요. 작은 행동 하나가 결정적인 단서가 될 수 있습니다.',
+    whoFeature1:'이동 · 관찰 · 선택', whoFeature2:'흰 마네킹과 등번호', whoFeature3:'한국어·영어',
+    whoLink:'Who Are U! 알아보기', whoNote:'개발 중입니다. 공개 플레이와 온라인 멀티플레이는 아직 제공하지 않습니다.',
+    whoArt:'콘셉트 일러스트 · 실제 게임 화면 아님', whoFooter:'Who Are U! 프로젝트', closeMenu:'메뉴 닫기', navigation:'주 메뉴', changeLang:'언어 변경',
     studioEyebrow:'02 / HOPPANGDEV 소개', studioTitle:'혼자서 만들지만,', studioTitleEm:'재미는 크게.',
     studioLead:'HOPPANGDEV는 개성 있는 오리지널 게임을 만드는 1인 인디 게임 개발 스튜디오입니다.',
-    studioCopy:'첫 아이디어부터 마지막 디테일까지 직접 고민하고 다듬습니다. 누구나 쉽게 시작하고 즐겁게 몰입할 수 있는 브라우저 게임을 중심으로 새로운 아이디어를 실험합니다.',
+    studioCopy:'첫 아이디어부터 마지막 디테일까지 직접 고민하고 다듬습니다. 가볍게 즐기는 브라우저 게임부터 걸어 다니며 관찰하는 3D 게임까지, 새로운 재미를 실험합니다.',
     studioPoint1:'독창적인 아이디어', studioPoint1d:'우리만의 개성이 담긴 게임',
     studioPoint2:'작지만 세심한 완성도', studioPoint2d:'손끝에 느껴지는 재미있는 조작',
     studioPoint3:'플레이어 중심', studioPoint3d:'쉽게 시작하고 즐겁게 플레이',
@@ -59,7 +70,7 @@ const i18n = {
     contactAction:'이메일 보내기', contactNote:'비즈니스 · 고객지원 · 의견',
     footerCaption:'조금 엉뚱하고, 많이 즐거운 게임.', footerNav:'바로가기', footerConnect:'연락처', footerRights:'All rights reserved.',
     footerDisclaimer:'1인 개발자가 운영하는 인디 게임 스튜디오 브랜드입니다.',
-    policy:'게임 개인정보 처리방침', support:'게임 도움말', terms:'게임 이용약관', langButton:'English',
+    policy:'날아라 욕조! 개인정보처리방침', support:'날아라 욕조! 도움말', terms:'날아라 욕조! 이용약관', langButton:'English',
     marqueeEnd:'계속 플레이!', mailLabel:'이메일 문의',
   },
 } as const
@@ -84,21 +95,38 @@ function Brand({ light = false }: { light?: boolean }) {
   return <a className={`brand ${light ? 'brand-light' : ''}`} href="#top" aria-label="HOPPANGDEV home"><span className="brand-mark"><BunLogo/></span><span>HOPPANG<span className="brand-highlight">DEV</span><span className="brand-period">.</span></span></a>
 }
 
-export default function App() {
-  const [lang, setLang] = useState<Lang>(() => {
-    if (typeof window === 'undefined') return 'en'
+function initialLanguage(): Lang {
+  if (typeof window === 'undefined') return 'en'
+  try {
     const stored = window.localStorage.getItem('hoppangdev-language')
-    return stored === 'en' || stored === 'ko' ? stored : navigator.language.toLowerCase().startsWith('ko') ? 'ko' : 'en'
-  })
+    if (stored === 'en' || stored === 'ko') return stored
+  } catch { /* Language switching also works when browser storage is unavailable. */ }
+  return navigator.language.toLowerCase().startsWith('ko') ? 'ko' : 'en'
+}
+
+export default function App() {
+  const [lang, setLang] = useState<Lang>(initialLanguage)
   const [menuOpen, setMenuOpen] = useState(false)
   const t = i18n[lang]
   const docs = gameDocs[lang]
+  const whoUrl = `https://hoppangdev.github.io/who-are-u${lang === 'ko' ? '.ko' : ''}.html`
 
   useEffect(() => {
     document.documentElement.lang = lang
     document.title = lang === 'ko' ? 'HOPPANGDEV — 인디 게임 개발 스튜디오' : 'HOPPANGDEV — Independent Game Studio'
-    window.localStorage.setItem('hoppangdev-language', lang)
+    try { window.localStorage.setItem('hoppangdev-language', lang) } catch { /* Storage is optional. */ }
   }, [lang])
+
+  useEffect(() => {
+    const escapeMenu = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && menuOpen) {
+        setMenuOpen(false)
+        document.querySelector<HTMLButtonElement>('.menu-toggle')?.focus()
+      }
+    }
+    window.addEventListener('keydown', escapeMenu)
+    return () => window.removeEventListener('keydown', escapeMenu)
+  }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
   return <div className="site" id="top">
@@ -106,16 +134,16 @@ export default function App() {
     <header className="site-header">
       <div className="shell header-content">
         <Brand />
-        <nav className={`main-nav ${menuOpen ? 'nav-open' : ''}`} aria-label="Main navigation">
+        <nav id="main-navigation" className={`main-nav ${menuOpen ? 'nav-open' : ''}`} aria-label={t.navigation}>
           <a onClick={closeMenu} href="#games">{t.navGames}</a>
           <a onClick={closeMenu} href="#studio">{t.navStudio}</a>
           <a onClick={closeMenu} href="#contact">{t.navContact}</a>
           <button className="lang-toggle mobile-lang" type="button" onClick={() => { setLang(lang === 'ko' ? 'en' : 'ko'); closeMenu() }}><Globe/>{t.langButton}</button>
         </nav>
         <div className="header-right">
-          <button className="lang-toggle desktop-lang" type="button" onClick={() => setLang(lang === 'ko' ? 'en' : 'ko')} aria-label="Change language"><Globe/>{t.langButton}</button>
+          <button className="lang-toggle desktop-lang" type="button" onClick={() => setLang(lang === 'ko' ? 'en' : 'ko')} aria-label={`${t.changeLang}: ${t.langButton}`}><Globe/>{t.langButton}</button>
           <a className="header-cta" href={`mailto:${contactEmail}`}>{t.navContact}<ArrowUpRight width={15}/></a>
-          <button className="menu-toggle" type="button" aria-label={menuOpen ? 'Close menu' : t.navMenu} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <CloseIcon/> : <MenuIcon/>}</button>
+          <button className="menu-toggle" type="button" aria-label={menuOpen ? t.closeMenu : t.navMenu} aria-controls="main-navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <CloseIcon/> : <MenuIcon/>}</button>
         </div>
       </div>
     </header>
@@ -154,6 +182,17 @@ export default function App() {
               <p className="image-disclaimer">{t.gameNotice}</p>
             </div>
           </article>
+          <article className="game-feature who-feature" aria-labelledby="who-title">
+            <div className="who-visual"><div className="game-topline"><span className="game-edition">HOPPANG ORIGINALS — 002</span><span className="game-topstar" aria-hidden="true">?</span></div><WhoArt/><p className="who-art-caption">{t.whoArt}</p></div>
+            <div className="game-details">
+              <div className="game-flags"><span className="game-flag">{t.whoType}</span><span className="game-status"><span/>{t.whoState}</span></div>
+              <p className="game-label">{t.whoLabel}</p><h3 id="who-title">Who Are U!</h3>
+              <p className="game-description">{t.whoDesc}</p>
+              <div className="feature-pills"><span>{t.whoFeature1}</span><span>{t.whoFeature2}</span><span>{t.whoFeature3}</span></div>
+              <div className="game-links"><a className="btn btn-dark" href={whoUrl}>{t.whoLink}<ArrowUpRight/></a></div>
+              <p className="project-note">{t.whoNote}</p>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -169,6 +208,6 @@ export default function App() {
       </section>
     </main>
 
-    <footer className="site-footer"><div className="shell"><div className="footer-top"><div className="footer-brand"><Brand light/><p>{t.footerCaption}</p></div><div className="footer-links"><div><strong>{t.footerNav}</strong><a href="#games">{t.navGames}</a><a href="#studio">{t.navStudio}</a><a href="#contact">{t.navContact}</a></div><div><strong>{t.footerConnect}</strong><a href={`mailto:${contactEmail}`}>{contactEmail}</a><a target="_blank" rel="noopener noreferrer" href={docs.support}>{t.support}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.privacy}>{t.policy}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.terms}>{t.terms}<ArrowUpRight width={14}/></a></div></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} HOPPANGDEV. {t.footerRights}</p><p>{t.footerDisclaimer}</p></div></div></footer>
+    <footer className="site-footer"><div className="shell"><div className="footer-top"><div className="footer-brand"><Brand light/><p>{t.footerCaption}</p></div><div className="footer-links"><div><strong>{t.footerNav}</strong><a href="#games">{t.navGames}</a><a href="#studio">{t.navStudio}</a><a href="#contact">{t.navContact}</a></div><div><strong>{t.footerConnect}</strong><a href={`mailto:${contactEmail}`}>{contactEmail}</a><a href={whoUrl}>{t.whoFooter}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.support}>{t.support}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.privacy}>{t.policy}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.terms}>{t.terms}<ArrowUpRight width={14}/></a></div></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} HOPPANGDEV. {t.footerRights}</p><p>{t.footerDisclaimer}</p></div></div></footer>
   </div>
 }

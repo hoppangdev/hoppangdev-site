@@ -4,7 +4,7 @@ HOPPANGDEV의 공식 소개 홈페이지. React + TypeScript + Vite로 제작한
 
 ## 공개 정보의 근거
 
-`hoppangdev/hoppangdev.github.io` 저장소에서 확인한 **Bathtub Blastoff (날아라 욕조!)**의 공개 소개/지원 내용을 기반으로 작성했습니다.
+`hoppangdev/hoppangdev.github.io` 저장소에서 확인한 **Bathtub Blastoff (날아라 욕조!)**의 공개 소개/지원 내용과 **Who Are U!**의 초기 개발 소개를 담았습니다.
 
 - 무료 브라우저 게임 (기존 소개 페이지 기준)
 - 스팀 부스터, 캐릭터 특기, 부품 업그레이드
@@ -12,6 +12,12 @@ HOPPANGDEV의 공식 소개 홈페이지. React + TypeScript + Vite로 제작한
 - 게임 개인정보 처리방침, 이용약관, 지원 페이지는 **기존 GitHub Pages 주소로 연결**
 
 게임 실행 파일이나 로컬 프로젝트는 이 저장소에 넣지 않습니다. 게임 출시 상태는 실제 상황에 맞게 검토하여 수정하세요.
+
+## Who Are U! 임시 소개 (2026-10-08)
+
+두 번째 프로젝트 카드에 3D 마트 관찰·추리 게임을 소개합니다. 현재 로컬 프로토타입이며 공개 플레이·온라인 멀티플레이·출시일을 제공한 것으로 표시하지 않습니다. 한국어/영어 소개는 기존 io 저장소의 `who-are-u.ko.html` / `who-are-u.html`로 연결합니다. `WhoArt.tsx`는 등번호 콘셉트 일러스트이며 게임 스크린샷이 아닙니다.
+
+사이트 내용은 `src/App.tsx`, 카드 그림은 `src/components/WhoArt.tsx`에서 수정합니다. 실제 배포는 기존 Cloudflare 연결의 `main` 업데이트를 따릅니다. `npm run build`와 브라우저의 데스크톱/모바일 화면·언어 전환·메뉴를 확인하고 반영합니다.
 
 ## 로컬 실행
 
