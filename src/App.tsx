@@ -77,8 +77,8 @@ const gameDocs = {
   },
 } as const
 
-// Change this to contact@hoppangdev.shop only AFTER Cloudflare Email Routing is tested.
-const contactEmail = 'hoppangdev@gmail.com'
+// Company email is verified and forwarded through Cloudflare Email Routing.
+const contactEmail = 'contact@hoppangdev.shop'
 
 function Brand({ light = false }: { light?: boolean }) {
   return <a className={`brand ${light ? 'brand-light' : ''}`} href="#top" aria-label="HOPPANGDEV home"><span className="brand-mark"><BunLogo/></span><span>HOPPANG<span className="brand-highlight">DEV</span><span className="brand-period">.</span></span></a>
