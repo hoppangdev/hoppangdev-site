@@ -51,7 +51,7 @@ Cloudflare 공식 문서: https://developers.cloudflare.com/pages/framework-guid
 
 ## 회사 이메일
 
-`src/App.tsx`의 `contactEmail`은 **현재 작동이 확인된** `hoppangdev@gmail.com`을 사용합니다. Cloudflare Email Routing을 설정하여 `contact@hoppangdev.shop` 수신을 테스트한 후에만 해당 상수를 회사 주소로 변경하세요.
+`src/App.tsx`의 `contactEmail`은 `contact@hoppangdev.shop`을 사용합니다. Cloudflare Email Routing으로 수신 테스트가 완료되었으며 실제 메일은 `hoppangdev@gmail.com`으로 전달됩니다.
 
 - 수신: Cloudflare DNS → Email Routing → Destination addresses: `hoppangdev@gmail.com` 인증 → Custom address `contact@hoppangdev.shop`
 - **Cloudflare Email Routing은 발신 메일을 제공하지 않습니다.** 회사 도메인에서 답장하려면 별도 발신 서비스가 필요합니다.
