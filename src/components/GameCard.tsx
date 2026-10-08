@@ -1,0 +1,6 @@
+import type { ReactNode } from 'react'
+import { ArrowUpRight } from './Icons'
+export type Game = { id: string; title: string; native?: string; type: string; status: string; description: string; features: string[]; note: string; url: string; art: ReactNode }
+export default function GameCard({ game, index, label }: { game: Game; index: number; label: string }) {
+  return <article className={`game-feature project-${game.id}`} aria-labelledby={`${game.id}-title`}><div className="game-visual shared-game-visual"><div className="game-topline"><span className="game-edition">HOPPANG ORIGINALS — 00{index + 1}</span><span className="game-topstar" aria-hidden="true">✳</span></div>{game.art}</div><div className="game-details"><div className="game-flags"><span className="game-flag">{game.type}</span><span className="game-status"><span/>{game.status}</span></div><h3 id={`${game.id}-title`}>{game.title}{game.native && <span>{game.native}</span>}</h3><p className="game-description">{game.description}</p><div className="feature-pills">{game.features.map(feature => <span key={feature}>{feature}</span>)}</div><div className="game-links"><a className="btn btn-dark" href={game.url}>{label}<ArrowUpRight/></a></div><p className="project-note">{game.note}</p></div></article>
+}

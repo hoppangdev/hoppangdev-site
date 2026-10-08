@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react'
 import BunLogo from './components/BunLogo'
 import BathArt from './components/BathArt'
 import WhoArt from './components/WhoArt'
-import { ArrowRight, ArrowUpRight, CloseIcon, Globe, MenuIcon, Sparkle } from './components/Icons'
+import { ArrowRight, ArrowUpRight, CloseIcon, Globe, MenuIcon } from './components/Icons'
+
+import LifeArt from './components/LifeArt'
+import GameCard from './components/GameCard'
+import GameCarousel from './components/GameCarousel'
 
 type Lang = 'en' | 'ko'
 
@@ -110,6 +114,14 @@ export default function App() {
   const t = i18n[lang]
   const docs = gameDocs[lang]
   const whoUrl = `https://hoppangdev.github.io/who-are-u${lang === 'ko' ? '.ko' : ''}.html`
+  const ko = lang === 'ko'
+  const infoUrl = (name: string) => `https://hoppangdev.github.io/${name}${ko ? '.ko' : ''}.html`
+  const games = [
+    { id:'bath', title:ko ? '날아라 욕조!' : 'Bathtub Blastoff', native:ko ? 'Bathtub Blastoff' : '날아라 욕조!', type:t.gameType, status:t.gameState, description:t.gameDesc, features:[t.feature1,t.feature2,t.feature3], note:t.gameNotice, url:infoUrl('bathtub-blastoff'), art:<BathArt/> },
+    { id:'who', title:'Who Are U!', type:t.whoType, status:t.whoState, description:t.whoDesc, features:[t.whoFeature1,t.whoFeature2,t.whoFeature3], note:t.whoNote, url:whoUrl, art:<WhoArt/> },
+    { id:'life', title:ko ? '작은 시작' : 'Little Beginnings', native:ko ? 'Little Beginnings · 가제' : '작은 시작 · working title', type:ko ? '생활 시뮬레이션' : 'LIFE SIMULATION', status:ko ? '개발 중 · 초기 알파' : 'IN DEVELOPMENT · EARLY ALPHA', description:ko ? '도시의 한 주민으로 작은 시작을 해 보세요. 직업과 목표를 고르고, 일과 생활·사업을 꾸리며 성장하는 한국어 생활 시뮬레이션입니다.' : 'Start small as one resident of a town. Choose a career and goals, balance work and daily life, and grow your business in this Korean-language life simulation.', features:ko ? ['직업 17개 · 목표 51개','자동 진행 · NPC 지도','일 · 생활 · 사업'] : ['17 careers · 51 goals','Automatic progress · NPC map','Work · life · business'], note:ko ? '미완성 초기 알파입니다. 공개 플레이는 제공하지 않습니다. 그림은 콘셉트 일러스트입니다.' : 'An unfinished early alpha. Public play is not available. Artwork is a concept illustration.', url:infoUrl('little-life'), art:<LifeArt/> },
+  ]
+
 
   useEffect(() => {
     document.documentElement.lang = lang
@@ -159,7 +171,7 @@ export default function App() {
             <div className="hero-actions"><a className="btn btn-primary" href="#games">{t.heroAction}<ArrowUpRight/></a><a className="text-link" href="#studio">{t.heroSecondary}<ArrowRight/></a></div>
             <div className="hero-micro"><span className="micro-line"/> <span>EST. 2026</span><span className="micro-divider"/> <span>MADE WITH IMAGINATION <span aria-hidden="true">✦</span></span></div>
           </div>
-          <div className="hero-graphic" aria-label="HOPPANGDEV mascot and game inspired illustration"><div className="hero-sticker">100%<br/>INDIE!<Sparkle/></div><BathArt/></div>
+          <div className="hero-graphic"><GameCarousel games={games} lang={lang}/></div>
         </div>
         <div className="hero-bottom shell"><span>{t.scroll}</span><span aria-hidden="true">↓</span><span>© HOPPANGDEV</span></div>
       </section>
@@ -170,29 +182,8 @@ export default function App() {
         <div className="shell">
           <div className="section-eyebrow"><span className="eyebrow-dot"/>{t.workEyebrow}</div>
           <div className="section-heading"><h2 id="games-title">{t.workTitle}<br/><em>{t.workTitleEm}</em></h2><p>{t.workIntro}</p></div>
-          <article className="game-feature">
-            <div className="game-visual"><div className="visual-diagonal"/><div className="game-topline"><span className="game-edition">HOPPANG ORIGINALS — 001</span><span className="game-topstar">✳</span></div><BathArt/><div className="game-bottomline"><span>BLAST OFF!</span><span aria-hidden="true">↗</span></div></div>
-            <div className="game-details">
-              <div className="game-flags"><span className="game-flag">{t.gameType}</span><span className="game-status"><span/>{t.gameState}</span></div>
-              <p className="game-label">{t.gameLabel}</p>
-              <h3>{t.gameTitle}<span>{t.gameNative}</span></h3>
-              <p className="game-description">{t.gameDesc}</p>
-              <div className="feature-pills"><span>★ {t.feature1}</span><span>◎ {t.feature2}</span><span>✳ {t.feature3}</span></div>
-              <div className="game-links"><a className="btn btn-dark" href={docs.support} target="_blank" rel="noopener noreferrer">{t.gameLink}<ArrowUpRight/></a><a className="quiet-link" href={docs.privacy} target="_blank" rel="noopener noreferrer">{t.gamePolicy}<ArrowUpRight width={15}/></a></div>
-              <p className="image-disclaimer">{t.gameNotice}</p>
-            </div>
-          </article>
-          <article className="game-feature who-feature" aria-labelledby="who-title">
-            <div className="who-visual"><div className="game-topline"><span className="game-edition">HOPPANG ORIGINALS — 002</span><span className="game-topstar" aria-hidden="true">?</span></div><WhoArt/><p className="who-art-caption">{t.whoArt}</p></div>
-            <div className="game-details">
-              <div className="game-flags"><span className="game-flag">{t.whoType}</span><span className="game-status"><span/>{t.whoState}</span></div>
-              <p className="game-label">{t.whoLabel}</p><h3 id="who-title">Who Are U!</h3>
-              <p className="game-description">{t.whoDesc}</p>
-              <div className="feature-pills"><span>{t.whoFeature1}</span><span>{t.whoFeature2}</span><span>{t.whoFeature3}</span></div>
-              <div className="game-links"><a className="btn btn-dark" href={whoUrl}>{t.whoLink}<ArrowUpRight/></a></div>
-              <p className="project-note">{t.whoNote}</p>
-            </div>
-          </article>
+          {games.map((game, index) => <GameCard key={game.id} game={game} index={index} label={ko ? '게임 소개 보기' : 'Explore the game'}/>)}
+
         </div>
       </section>
 

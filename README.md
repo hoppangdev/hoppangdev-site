@@ -77,3 +77,6 @@ Cloudflare 공식 문서: https://developers.cloudflare.com/pages/framework-guid
 - 게임 판매/배포 플랫폼 링크는 실제 공개될 때 추가합니다. Poki/CrazyGames/Playgama 문서의 플랫폼 예시는 출시 사실을 보증하지 않습니다.
 - 홈은 스튜디오 소개 목적이며 **법적으로 설립된 회사나 투자 유치 이력은 주장하지 않습니다.**
 - 페이지 제작/배포만으로 Claude 스타트업 프로그램의 자격이나 승인 여부가 확정되는 것은 아닙니다.
+
+## Three-game portfolio
+The hero features three games and changes every six seconds. Previous/next buttons, direct selection, touch swipes and keyboard arrows are supported. Automatic rotation pauses on hover, focus, hidden tabs and reduced motion; visitors can pause it manually. All cards open bilingual game information pages. Little Beginnings is an unfinished Korean early alpha with no public play. Game source and playable bundles remain local; only marketing website files are published.
