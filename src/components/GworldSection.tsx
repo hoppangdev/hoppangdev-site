@@ -4,7 +4,7 @@ export const gworldUrl = 'https://gworld.hoppangdev.shop'
 
 const copy = {
   en: {
-    eyebrow:'02 / NEW · PLAYS IN YOUR BROWSER', title:'The world is real.', titleEm:'Only you are not.',
+    eyebrow:'HOPPANG ORIGINALS — 002 · PLAYS IN YOUR BROWSER', title:'The world is real.', titleEm:'Only you are not.',
     lead:'gworld: walk Gangnam Station, live.',
     body:'gworld lets you walk a 3D copy of real Seoul as your own avatar. Building footprints and heights, the time and the sun, the weather, the number of people on the street, buses, subway arrivals and traffic lights all run on live public data. The only thing that isn’t real is you.',
     points:[
@@ -20,7 +20,7 @@ const copy = {
     credits:'Data: Seoul Open Data Plaza, data.go.kr, Seoul T-Data, MOLIT integrated building data, juso.go.kr, © OpenStreetMap contributors (ODbL). Non-commercial pilot. Screens are real gworld captures.',
   },
   ko: {
-    eyebrow:'02 / 새 프로젝트 · 웹에서 바로', title:'세상은 진짜,', titleEm:'나만 가상.',
+    eyebrow:'HOPPANG ORIGINALS — 002 · 웹에서 바로', title:'세상은 진짜,', titleEm:'나만 가상.',
     lead:'gworld, 강남역을 실시간으로 걷다.',
     body:'gworld는 실제 서울을 그대로 옮긴 3D 거리를 내 아바타로 걸어 다니는 웹 서비스예요. 건물 자리와 층수, 지금 시각과 해 위치, 날씨, 거리의 사람 수, 버스와 지하철 도착, 신호등까지 모두 실제 공공 데이터로 움직여요. 가상인 건 그 거리에 서 있는 나 하나뿐이에요.',
     points:[
@@ -41,8 +41,8 @@ const shots = ['/gworld/walk.jpg', '/gworld/bus-stop.jpg', '/gworld/subway.jpg',
 
 export default function GworldSection({ lang }: { lang: 'ko' | 'en' }) {
   const t = copy[lang]
-  return <section className="gworld-section section-pad" id="gworld" aria-labelledby="gworld-title">
-    <div className="shell gworld-grid">
+  return <section className="gworld-feature" id="gworld" aria-labelledby="gworld-title">
+    <div className="gworld-grid">
       <div className="gworld-copy">
         <div className="section-eyebrow"><span className="eyebrow-dot"/>{t.eyebrow}</div>
         <h2 id="gworld-title">{t.title}<br/><em>{t.titleEm}</em></h2>
@@ -57,6 +57,6 @@ export default function GworldSection({ lang }: { lang: 'ko' | 'en' }) {
         <div className="gworld-thumbs">{shots.slice(1).map((src, index) => <img key={src} src={src} alt={t.shots[index + 1]} width={1568} height={705} loading="lazy"/>)}</div>
       </div>
     </div>
-    <p className="shell gworld-credits">{t.credits}</p>
+    <p className="gworld-credits">{t.credits}</p>
   </section>
 }
