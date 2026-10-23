@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import BunLogo from './components/BunLogo'
 import BathArt from './components/BathArt'
 import WhoArt from './components/WhoArt'
@@ -7,12 +7,13 @@ import { ArrowRight, ArrowUpRight, CloseIcon, Globe, MenuIcon } from './componen
 import LifeArt from './components/LifeArt'
 import GameCard from './components/GameCard'
 import GameCarousel from './components/GameCarousel'
+import GworldSection, { gworldUrl } from './components/GworldSection'
 
 type Lang = 'en' | 'ko'
 
 const i18n = {
   en: {
-    navGames:'Our Games', navStudio:'The Studio', navContact:'Get in Touch', navMenu:'Open menu',
+    navGames:'Our Games', navGworld:'gworld', navStudio:'The Studio', navContact:'Get in Touch', navMenu:'Open menu',
     pill:'INDEPENDENT GAME STUDIO', heroTop:'SMALL STUDIO.',heroAccent:'BIG PLAY.',
     heroDesc:'We build playful little worlds, from a flying bathtub to a supermarket full of suspiciously ordinary faces.',
     heroAction:'Explore our games', heroSecondary:'Meet the studio', scroll:'SCROLL TO EXPLORE',
@@ -45,7 +46,7 @@ const i18n = {
     marqueeEnd:'KEEP PLAYING', mailLabel:'EMAIL US',
   },
   ko: {
-    navGames:'게임 소개', navStudio:'스튜디오', navContact:'문의하기', navMenu:'메뉴 열기',
+    navGames:'게임 소개', navGworld:'gworld', navStudio:'스튜디오', navContact:'문의하기', navMenu:'메뉴 열기',
     pill:'1인 인디 게임 개발 스튜디오', heroTop:'작은 스튜디오.',heroAccent:'커다란 재미.',
     heroDesc:'화면을 닫은 뒤에도 오래 기억될, 개성 있고 즐거운 작은 세계를 만듭니다.',
     heroAction:'게임 보러가기', heroSecondary:'스튜디오 소개', scroll:'스크롤해서 둘러보기',
@@ -118,6 +119,7 @@ export default function App() {
   const infoUrl = (name: string) => `https://hoppangdev.github.io/${name}${ko ? '.ko' : ''}.html`
   const games = [
     { id:'bath', title:ko ? '날아라 욕조!' : 'Bathtub Blastoff', native:ko ? 'Bathtub Blastoff' : '날아라 욕조!', type:t.gameType, status:t.gameState, description:t.gameDesc, features:[t.feature1,t.feature2,t.feature3], note:t.gameNotice, url:infoUrl('bathtub-blastoff'), playUrl:'https://playgama.ai/play/fotyr4s6kn46ii', playLabel:t.gamePlay, art:<BathArt/> },
+    { id:'gworld', title:'gworld', native:ko ? '실시간 강남 산책' : 'Walk Gangnam, live', type:ko ? '실시간 3D 산책' : 'LIVE 3D CITY WALK', status:ko ? '공개 시범 · PC 웹' : 'PUBLIC PILOT · DESKTOP WEB', description:ko ? '실제 서울을 그대로 옮긴 3D 강남역을 내 아바타로 걸어요. 사람 수·버스·지하철·신호·날씨가 모두 실시간 공공 데이터이고, 가상인 건 나 하나뿐이에요.' : 'Walk a 3D copy of real Gangnam Station as your avatar. Crowds, buses, subway, signals and weather all run on live public data. Only you are virtual.', features:ko ? ['실시간 공공 데이터','버스·지하철·택시·따릉이','실측/연출 꼬리표'] : ['Live public data','Bus · subway · taxi · bike share','Measured/staged labels'], note:ko ? '강남역 주변 650m 시범작입니다. PC 브라우저에서 가장 잘 돌아갑니다. 화면은 실제 gworld 캡처입니다.' : 'A pilot covering 650 m around Gangnam Station. Best on desktop browsers. The image is a real gworld capture.', url:'#gworld', playUrl:gworldUrl, playLabel:ko ? 'gworld 들어가기' : 'Enter gworld', art:<img className="gworld-shot" src="/gworld/walk.jpg" alt={ko ? 'gworld에서 강남대로를 걷는 모습' : 'Walking down Gangnam-daero in gworld'}/> },
     { id:'who', title:'Who Are U!', type:t.whoType, status:t.whoState, description:t.whoDesc, features:[t.whoFeature1,t.whoFeature2,t.whoFeature3], note:t.whoNote, url:whoUrl, art:<WhoArt/> },
     { id:'life', title:ko ? '작은 시작' : 'Little Beginnings', native:ko ? 'Little Beginnings · 가제' : '작은 시작 · working title', type:ko ? '생활 시뮬레이션' : 'LIFE SIMULATION', status:ko ? '개발 중 · 초기 알파' : 'IN DEVELOPMENT · EARLY ALPHA', description:ko ? '도시의 한 주민으로 작은 시작을 해 보세요. 직업과 목표를 고르고, 일과 생활·사업을 꾸리며 성장하는 한국어 생활 시뮬레이션입니다.' : 'Start small as one resident of a town. Choose a career and goals, balance work and daily life, and grow your business in this Korean-language life simulation.', features:ko ? ['직업 17개 · 목표 51개','자동 진행 · NPC 지도','일 · 생활 · 사업'] : ['17 careers · 51 goals','Automatic progress · NPC map','Work · life · business'], note:ko ? '미완성 초기 알파입니다. 공개 플레이는 제공하지 않습니다. 그림은 콘셉트 일러스트입니다.' : 'An unfinished early alpha. Public play is not available. Artwork is a concept illustration.', url:infoUrl('little-life'), art:<LifeArt/> },
   ]
@@ -148,6 +150,7 @@ export default function App() {
         <Brand />
         <nav id="main-navigation" className={`main-nav ${menuOpen ? 'nav-open' : ''}`} aria-label={t.navigation}>
           <a onClick={closeMenu} href="#games">{t.navGames}</a>
+          <a onClick={closeMenu} href="#gworld">{t.navGworld}</a>
           <a onClick={closeMenu} href="#studio">{t.navStudio}</a>
           <a onClick={closeMenu} href="#contact">{t.navContact}</a>
           <button className="lang-toggle mobile-lang" type="button" onClick={() => { setLang(lang === 'ko' ? 'en' : 'ko'); closeMenu() }}><Globe/>{t.langButton}</button>
@@ -182,7 +185,7 @@ export default function App() {
         <div className="shell">
           <div className="section-eyebrow"><span className="eyebrow-dot"/>{t.workEyebrow}</div>
           <div className="section-heading"><h2 id="games-title">{t.workTitle}<br/><em>{t.workTitleEm}</em></h2><p>{t.workIntro}</p></div>
-          {games.map((game, index) => <GameCard key={game.id} game={game} index={index} label={ko ? '게임 소개 보기' : 'Explore the game'}/>)}
+          {games.map((game, index) => game.id === 'gworld' ? null : <Fragment key={game.id}><GameCard game={game} index={index} label={ko ? '게임 소개 보기' : 'Explore the game'}/>{game.id === 'bath' && <GworldSection lang={lang}/>}</Fragment>)}
 
         </div>
       </section>
@@ -199,6 +202,6 @@ export default function App() {
       </section>
     </main>
 
-    <footer className="site-footer"><div className="shell"><div className="footer-top"><div className="footer-brand"><Brand light/><p>{t.footerCaption}</p></div><div className="footer-links"><div><strong>{t.footerNav}</strong><a href="#games">{t.navGames}</a><a href="#studio">{t.navStudio}</a><a href="#contact">{t.navContact}</a></div><div><strong>{t.footerConnect}</strong><a href={`mailto:${contactEmail}`}>{contactEmail}</a><a href={whoUrl}>{t.whoFooter}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.support}>{t.support}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.privacy}>{t.policy}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.terms}>{t.terms}<ArrowUpRight width={14}/></a></div></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} HOPPANGDEV. {t.footerRights}</p><p>{t.footerDisclaimer}</p></div></div></footer>
+    <footer className="site-footer"><div className="shell"><div className="footer-top"><div className="footer-brand"><Brand light/><p>{t.footerCaption}</p></div><div className="footer-links"><div><strong>{t.footerNav}</strong><a href="#games">{t.navGames}</a><a href="#gworld">{t.navGworld}</a><a href="#studio">{t.navStudio}</a><a href="#contact">{t.navContact}</a></div><div><strong>{t.footerConnect}</strong><a href={`mailto:${contactEmail}`}>{contactEmail}</a><a href={whoUrl}>{t.whoFooter}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.support}>{t.support}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.privacy}>{t.policy}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.terms}>{t.terms}<ArrowUpRight width={14}/></a></div></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} HOPPANGDEV. {t.footerRights}</p><p>{t.footerDisclaimer}</p></div></div></footer>
   </div>
 }
