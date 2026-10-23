@@ -7,12 +7,13 @@ import { ArrowRight, ArrowUpRight, CloseIcon, Globe, MenuIcon } from './componen
 import LifeArt from './components/LifeArt'
 import GameCard from './components/GameCard'
 import GameCarousel from './components/GameCarousel'
+import GworldSection, { gworldUrl } from './components/GworldSection'
 
 type Lang = 'en' | 'ko'
 
 const i18n = {
   en: {
-    navGames:'Our Games', navStudio:'The Studio', navContact:'Get in Touch', navMenu:'Open menu',
+    navGames:'Our Games', navGworld:'gworld', navStudio:'The Studio', navContact:'Get in Touch', navMenu:'Open menu',
     pill:'INDEPENDENT GAME STUDIO', heroTop:'SMALL STUDIO.',heroAccent:'BIG PLAY.',
     heroDesc:'We build playful little worlds, from a flying bathtub to a supermarket full of suspiciously ordinary faces.',
     heroAction:'Explore our games', heroSecondary:'Meet the studio', scroll:'SCROLL TO EXPLORE',
@@ -30,13 +31,13 @@ const i18n = {
     whoFeature1:'Walk, watch, decide', whoFeature2:'White mannequins · back numbers', whoFeature3:'Korean & English',
     whoLink:'Meet Who Are U!', whoNote:'In development. Public play and online multiplayer are not available yet.',
     whoArt:'Concept illustration · not gameplay', whoFooter:'Who Are U! project', closeMenu:'Close menu', navigation:'Main navigation', changeLang:'Change language',
-    studioEyebrow:'02 / WHO WE ARE', studioTitle:'Independent by choice.', studioTitleEm:'Playful by nature.',
+    studioEyebrow:'03 / WHO WE ARE', studioTitle:'Independent by choice.', studioTitleEm:'Playful by nature.',
     studioLead:'HOPPANGDEV is a one-person independent game development studio creating original games with personality.',
     studioCopy:'From the first sketch to the final polish, every detail is crafted with a simple goal: make playing feel wonderfully surprising. From browser adventures to 3D worlds, we keep experimenting with new ideas.',
     studioPoint1:'Original ideas', studioPoint1d:'Games that have a character of their own.',
     studioPoint2:'Small, thoughtful details', studioPoint2d:'Every interaction should feel good.',
     studioPoint3:'Made for players', studioPoint3d:'Accessible, approachable and fun.',
-    contactEyebrow:'03 / SAY HELLO', contactTitle:'Have something', contactEm:'in mind?',
+    contactEyebrow:'04 / SAY HELLO', contactTitle:'Have something', contactEm:'in mind?',
     contactDesc:'Questions about our games, feedback, or a collaboration idea? We would love to hear from you.',
     contactAction:'Send us an email', contactNote:'Business, support & friendly hellos',
     footerCaption:'Independent games with a playful twist.', footerNav:'NAVIGATE', footerConnect:'CONNECT', footerRights:'All rights reserved.',
@@ -45,7 +46,7 @@ const i18n = {
     marqueeEnd:'KEEP PLAYING', mailLabel:'EMAIL US',
   },
   ko: {
-    navGames:'게임 소개', navStudio:'스튜디오', navContact:'문의하기', navMenu:'메뉴 열기',
+    navGames:'게임 소개', navGworld:'gworld', navStudio:'스튜디오', navContact:'문의하기', navMenu:'메뉴 열기',
     pill:'1인 인디 게임 개발 스튜디오', heroTop:'작은 스튜디오.',heroAccent:'커다란 재미.',
     heroDesc:'화면을 닫은 뒤에도 오래 기억될, 개성 있고 즐거운 작은 세계를 만듭니다.',
     heroAction:'게임 보러가기', heroSecondary:'스튜디오 소개', scroll:'스크롤해서 둘러보기',
@@ -63,13 +64,13 @@ const i18n = {
     whoFeature1:'이동 · 관찰 · 선택', whoFeature2:'흰 마네킹과 등번호', whoFeature3:'한국어·영어',
     whoLink:'Who Are U! 알아보기', whoNote:'개발 중입니다. 공개 플레이와 온라인 멀티플레이는 아직 제공하지 않습니다.',
     whoArt:'콘셉트 일러스트 · 실제 게임 화면 아님', whoFooter:'Who Are U! 프로젝트', closeMenu:'메뉴 닫기', navigation:'주 메뉴', changeLang:'언어 변경',
-    studioEyebrow:'02 / HOPPANGDEV 소개', studioTitle:'혼자서 만들지만,', studioTitleEm:'재미는 크게.',
+    studioEyebrow:'03 / HOPPANGDEV 소개', studioTitle:'혼자서 만들지만,', studioTitleEm:'재미는 크게.',
     studioLead:'HOPPANGDEV는 개성 있는 오리지널 게임을 만드는 1인 인디 게임 개발 스튜디오입니다.',
     studioCopy:'첫 아이디어부터 마지막 디테일까지 직접 고민하고 다듬습니다. 가볍게 즐기는 브라우저 게임부터 걸어 다니며 관찰하는 3D 게임까지, 새로운 재미를 실험합니다.',
     studioPoint1:'독창적인 아이디어', studioPoint1d:'우리만의 개성이 담긴 게임',
     studioPoint2:'작지만 세심한 완성도', studioPoint2d:'손끝에 느껴지는 재미있는 조작',
     studioPoint3:'플레이어 중심', studioPoint3d:'쉽게 시작하고 즐겁게 플레이',
-    contactEyebrow:'03 / 연락하기', contactTitle:'함께 이야기', contactEm:'나눠볼까요?',
+    contactEyebrow:'04 / 연락하기', contactTitle:'함께 이야기', contactEm:'나눠볼까요?',
     contactDesc:'게임에 관한 질문, 버그 제보, 협업 제안이 있다면 편하게 연락해 주세요.',
     contactAction:'이메일 보내기', contactNote:'비즈니스 · 고객지원 · 의견',
     footerCaption:'조금 엉뚱하고, 많이 즐거운 게임.', footerNav:'바로가기', footerConnect:'연락처', footerRights:'All rights reserved.',
@@ -118,6 +119,7 @@ export default function App() {
   const infoUrl = (name: string) => `https://hoppangdev.github.io/${name}${ko ? '.ko' : ''}.html`
   const games = [
     { id:'bath', title:ko ? '날아라 욕조!' : 'Bathtub Blastoff', native:ko ? 'Bathtub Blastoff' : '날아라 욕조!', type:t.gameType, status:t.gameState, description:t.gameDesc, features:[t.feature1,t.feature2,t.feature3], note:t.gameNotice, url:infoUrl('bathtub-blastoff'), playUrl:'https://playgama.ai/play/fotyr4s6kn46ii', playLabel:t.gamePlay, art:<BathArt/> },
+    { id:'gworld', title:'gworld', native:ko ? '실시간 강남 산책' : 'Walk Gangnam, live', type:ko ? '실시간 3D 산책' : 'LIVE 3D CITY WALK', status:ko ? '공개 시범 · PC 웹' : 'PUBLIC PILOT · DESKTOP WEB', description:ko ? '실제 서울을 그대로 옮긴 3D 강남역을 내 아바타로 걸어요. 사람 수·버스·지하철·신호·날씨가 모두 실시간 공공 데이터이고, 가상인 건 나 하나뿐이에요.' : 'Walk a 3D copy of real Gangnam Station as your avatar. Crowds, buses, subway, signals and weather all run on live public data. Only you are virtual.', features:ko ? ['실시간 공공 데이터','버스·지하철·택시·따릉이','실측/연출 꼬리표'] : ['Live public data','Bus · subway · taxi · bike share','Measured/staged labels'], note:ko ? '강남역 주변 650m 시범작입니다. PC 브라우저에서 가장 잘 돌아갑니다. 화면은 실제 gworld 캡처입니다.' : 'A pilot covering 650 m around Gangnam Station. Best on desktop browsers. The image is a real gworld capture.', url:'#gworld', playUrl:gworldUrl, playLabel:ko ? 'gworld 들어가기' : 'Enter gworld', art:<img className="gworld-shot" src="/gworld/walk.jpg" alt={ko ? 'gworld에서 강남대로를 걷는 모습' : 'Walking down Gangnam-daero in gworld'}/> },
     { id:'who', title:'Who Are U!', type:t.whoType, status:t.whoState, description:t.whoDesc, features:[t.whoFeature1,t.whoFeature2,t.whoFeature3], note:t.whoNote, url:whoUrl, art:<WhoArt/> },
     { id:'life', title:ko ? '작은 시작' : 'Little Beginnings', native:ko ? 'Little Beginnings · 가제' : '작은 시작 · working title', type:ko ? '생활 시뮬레이션' : 'LIFE SIMULATION', status:ko ? '개발 중 · 초기 알파' : 'IN DEVELOPMENT · EARLY ALPHA', description:ko ? '도시의 한 주민으로 작은 시작을 해 보세요. 직업과 목표를 고르고, 일과 생활·사업을 꾸리며 성장하는 한국어 생활 시뮬레이션입니다.' : 'Start small as one resident of a town. Choose a career and goals, balance work and daily life, and grow your business in this Korean-language life simulation.', features:ko ? ['직업 17개 · 목표 51개','자동 진행 · NPC 지도','일 · 생활 · 사업'] : ['17 careers · 51 goals','Automatic progress · NPC map','Work · life · business'], note:ko ? '미완성 초기 알파입니다. 공개 플레이는 제공하지 않습니다. 그림은 콘셉트 일러스트입니다.' : 'An unfinished early alpha. Public play is not available. Artwork is a concept illustration.', url:infoUrl('little-life'), art:<LifeArt/> },
   ]
@@ -148,6 +150,7 @@ export default function App() {
         <Brand />
         <nav id="main-navigation" className={`main-nav ${menuOpen ? 'nav-open' : ''}`} aria-label={t.navigation}>
           <a onClick={closeMenu} href="#games">{t.navGames}</a>
+          <a onClick={closeMenu} href="#gworld">{t.navGworld}</a>
           <a onClick={closeMenu} href="#studio">{t.navStudio}</a>
           <a onClick={closeMenu} href="#contact">{t.navContact}</a>
           <button className="lang-toggle mobile-lang" type="button" onClick={() => { setLang(lang === 'ko' ? 'en' : 'ko'); closeMenu() }}><Globe/>{t.langButton}</button>
@@ -187,6 +190,8 @@ export default function App() {
         </div>
       </section>
 
+      <GworldSection lang={lang}/>
+
       <section className="studio-section section-pad" id="studio" aria-labelledby="studio-title">
         <div className="shell studio-grid">
           <div className="studio-left"><div className="section-eyebrow light"><span className="eyebrow-dot"/>{t.studioEyebrow}</div><h2 id="studio-title">{t.studioTitle}<br/><em>{t.studioTitleEm}</em></h2><div className="studio-mascot"><div className="mascot-ray ray1"/><div className="mascot-ray ray2"/><div className="mascot-ray ray3"/><BunLogo/><span className="mascot-label">HELLO! <span aria-hidden="true">✳</span></span></div></div>
@@ -199,6 +204,6 @@ export default function App() {
       </section>
     </main>
 
-    <footer className="site-footer"><div className="shell"><div className="footer-top"><div className="footer-brand"><Brand light/><p>{t.footerCaption}</p></div><div className="footer-links"><div><strong>{t.footerNav}</strong><a href="#games">{t.navGames}</a><a href="#studio">{t.navStudio}</a><a href="#contact">{t.navContact}</a></div><div><strong>{t.footerConnect}</strong><a href={`mailto:${contactEmail}`}>{contactEmail}</a><a href={whoUrl}>{t.whoFooter}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.support}>{t.support}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.privacy}>{t.policy}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.terms}>{t.terms}<ArrowUpRight width={14}/></a></div></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} HOPPANGDEV. {t.footerRights}</p><p>{t.footerDisclaimer}</p></div></div></footer>
+    <footer className="site-footer"><div className="shell"><div className="footer-top"><div className="footer-brand"><Brand light/><p>{t.footerCaption}</p></div><div className="footer-links"><div><strong>{t.footerNav}</strong><a href="#games">{t.navGames}</a><a href="#gworld">{t.navGworld}</a><a href="#studio">{t.navStudio}</a><a href="#contact">{t.navContact}</a></div><div><strong>{t.footerConnect}</strong><a href={`mailto:${contactEmail}`}>{contactEmail}</a><a href={whoUrl}>{t.whoFooter}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.support}>{t.support}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.privacy}>{t.policy}<ArrowUpRight width={14}/></a><a target="_blank" rel="noopener noreferrer" href={docs.terms}>{t.terms}<ArrowUpRight width={14}/></a></div></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} HOPPANGDEV. {t.footerRights}</p><p>{t.footerDisclaimer}</p></div></div></footer>
   </div>
 }
