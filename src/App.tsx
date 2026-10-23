@@ -19,11 +19,11 @@ const i18n = {
     ticker:['MADE WITH CURIOSITY','BUILT FOR FUN','ONE GAME AT A TIME','IMAGINATION FIRST'],
     workEyebrow:'01 / WHAT WE MAKE', workTitle:'Meet the', workTitleEm:'playground.',
     workIntro:'Unexpected adventures. One very determined indie developer. And a little bit of chaos.',
-    gameLabel:'OUR FIRST FEATURED PROJECT', gameType:'FREE BROWSER GAME', gameState:'COMING SOON',
+    gameLabel:'OUR FIRST FEATURED PROJECT', gameType:'FREE BROWSER GAME', gameState:'OUT NOW ON PLAYGAMA', gamePlay:'Play now',
     gameTitle:'Bathtub Blastoff', gameNative:'날아라 욕조!',
     gameDesc:'Slide a bathtub off a bathhouse roof, tap to launch, then hold to fire steam boosts. Ride geysers, upgrade your ride and fly through eight stages all the way to the Moon.',
     feature1:'8 stages to the Moon', feature2:'10 riders · parts workshop', feature3:'12 languages · free',
-    gameNotice:'Not released yet. Coming soon to web game portals. The card artwork is illustrative; real in-game screens are on the game information page.',
+    gameNotice:'Out now on Playgama, free in your browser. The card artwork is illustrative; real in-game screens are on the game information page.',
     gameLink:'Game information & support', gamePolicy:'Privacy policy',
     whoType:'3D OBSERVATION GAME', whoState:'LOCAL PROTOTYPE', whoLabel:'A NEW PROJECT IN THE AISLES',
     whoDesc:'Everyone looks the same. Walk through a supermarket, watch the crowd and pick the back number of the AI trying to act human. A small gesture might be your biggest clue.',
@@ -52,11 +52,11 @@ const i18n = {
     ticker:['호기심으로 만드는 게임','재미를 가장 먼저','한 번에 한 게임씩','상상력이 시작점'],
     workEyebrow:'01 / 우리가 만드는 게임', workTitle:'재미있는', workTitleEm:'상상 한 조각.',
     workIntro:'예상치 못한 모험과 엉뚱한 아이디어. 한 명의 개발자가 만드는 작은 세계.',
-    gameLabel:'첫 번째 대표 프로젝트', gameType:'무료 브라우저 게임', gameState:'곧 출시',
+    gameLabel:'첫 번째 대표 프로젝트', gameType:'무료 브라우저 게임', gameState:'Playgama 출시', gamePlay:'지금 플레이',
     gameTitle:'Bathtub Blastoff', gameNative:'날아라 욕조!',
     gameDesc:'목욕탕 지붕에서 욕조를 발사하고, 화면을 누르고 있으면 스팀 부스터가 뿜어져 나옵니다. 간헐천을 타고 부품을 업그레이드하며 스테이지 8개를 지나 달까지 날아가는 유쾌한 비행 게임입니다.',
     feature1:'달까지 스테이지 8개', feature2:'캐릭터 10명 · 부품 작업실', feature3:'12개 언어 · 무료',
-    gameNotice:'아직 출시 전입니다. 곧 웹 게임 포털에서 만나요. 카드의 그림은 설명용 일러스트이며, 실제 게임 화면은 게임 소개 페이지에서 볼 수 있습니다.',
+    gameNotice:'지금 Playgama에서 브라우저로 무료로 즐길 수 있습니다. 카드의 그림은 설명용 일러스트이며, 실제 게임 화면은 게임 소개 페이지에서 볼 수 있습니다.',
     gameLink:'게임 정보·도움말 보기', gamePolicy:'개인정보 처리방침',
     whoType:'3D 관찰·추리 게임', whoState:'로컬 프로토타입', whoLabel:'마트에서 시작하는 새 프로젝트',
     whoDesc:'모두 같은 흰 마네킹. 마트를 걸으며 움직임과 몸짓을 살피고, 사람처럼 행동하는 AI의 등번호를 골라 보세요. 작은 행동 하나가 결정적인 단서가 될 수 있습니다.',
@@ -117,7 +117,7 @@ export default function App() {
   const ko = lang === 'ko'
   const infoUrl = (name: string) => `https://hoppangdev.github.io/${name}${ko ? '.ko' : ''}.html`
   const games = [
-    { id:'bath', title:ko ? '날아라 욕조!' : 'Bathtub Blastoff', native:ko ? 'Bathtub Blastoff' : '날아라 욕조!', type:t.gameType, status:t.gameState, description:t.gameDesc, features:[t.feature1,t.feature2,t.feature3], note:t.gameNotice, url:infoUrl('bathtub-blastoff'), art:<BathArt/> },
+    { id:'bath', title:ko ? '날아라 욕조!' : 'Bathtub Blastoff', native:ko ? 'Bathtub Blastoff' : '날아라 욕조!', type:t.gameType, status:t.gameState, description:t.gameDesc, features:[t.feature1,t.feature2,t.feature3], note:t.gameNotice, url:infoUrl('bathtub-blastoff'), playUrl:'https://playgama.ai/play/fotyr4s6kn46ii', playLabel:t.gamePlay, art:<BathArt/> },
     { id:'who', title:'Who Are U!', type:t.whoType, status:t.whoState, description:t.whoDesc, features:[t.whoFeature1,t.whoFeature2,t.whoFeature3], note:t.whoNote, url:whoUrl, art:<WhoArt/> },
     { id:'life', title:ko ? '작은 시작' : 'Little Beginnings', native:ko ? 'Little Beginnings · 가제' : '작은 시작 · working title', type:ko ? '생활 시뮬레이션' : 'LIFE SIMULATION', status:ko ? '개발 중 · 초기 알파' : 'IN DEVELOPMENT · EARLY ALPHA', description:ko ? '도시의 한 주민으로 작은 시작을 해 보세요. 직업과 목표를 고르고, 일과 생활·사업을 꾸리며 성장하는 한국어 생활 시뮬레이션입니다.' : 'Start small as one resident of a town. Choose a career and goals, balance work and daily life, and grow your business in this Korean-language life simulation.', features:ko ? ['직업 17개 · 목표 51개','자동 진행 · NPC 지도','일 · 생활 · 사업'] : ['17 careers · 51 goals','Automatic progress · NPC map','Work · life · business'], note:ko ? '미완성 초기 알파입니다. 공개 플레이는 제공하지 않습니다. 그림은 콘셉트 일러스트입니다.' : 'An unfinished early alpha. Public play is not available. Artwork is a concept illustration.', url:infoUrl('little-life'), art:<LifeArt/> },
   ]

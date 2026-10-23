@@ -73,7 +73,7 @@ Cloudflare 공식 문서: https://developers.cloudflare.com/pages/framework-guid
 
 ## 중요한 주의사항
 
-- Bathtub Blastoff는 아직 출시 전이므로 'Coming soon (곧 웹 게임 포털에서 만나요)'로 표시합니다. 포털 이름·출시일·플레이 링크는 실제 공개 뒤에 추가합니다.
+- Bathtub Blastoff는 2026-10-23 Playgama에 출시되어 'Out now on Playgama (Playgama 출시)'로 표시하고, 카드에 플레이 링크(https://playgama.ai/play/fotyr4s6kn46ii)를 둡니다. 다른 포털은 실제 공개 뒤에 추가합니다.
 - 게임 판매/배포 플랫폼 링크는 실제 공개될 때 추가합니다. Poki/CrazyGames/Playgama 문서의 플랫폼 예시는 출시 사실을 보증하지 않습니다.
 - 홈은 스튜디오 소개 목적이며 **법적으로 설립된 회사나 투자 유치 이력은 주장하지 않습니다.**
 - 페이지 제작/배포만으로 Claude 스타트업 프로그램의 자격이나 승인 여부가 확정되는 것은 아닙니다.
